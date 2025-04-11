@@ -207,9 +207,9 @@ function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://sns-webpic-qc.xhscdn.com/202504112208/f4ff26d6344145f69a51141ec99918a8/notes_pre_post/1040g3k831fvubeck7e0g5ovdhjo9iem9p7h6buo!nd_prv_wlteh_webp_3"
+                src="resources/photo_1.jpg"
                 alt="Language Learning"
-                className="w-full h-48 md:h-64 object-cover"
+                className="w-full h-48 md:h-64 object-contain"
               />
               <div className="p-6 bg-white">
                 <h3 className="text-lg md:text-xl font-semibold mb-3">
@@ -223,9 +223,9 @@ function App() {
             </div>
             <div className="rounded-xl overflow-hidden shadow-lg">
               <img
-                src="https://sns-webpic-qc.xhscdn.com/202504112208/f4ff26d6344145f69a51141ec99918a8/notes_pre_post/1040g3k831fvubeck7e0g5ovdhjo9iem9p7h6buo!nd_prv_wlteh_webp_3"
+                src="resources/photo_2.jpg"
                 alt="Language Learning"
-                className="w-full h-48 md:h-64 object-cover"
+                className="w-full h-48 md:h-64 object-contain"
               />
               <div className="p-6 bg-white">
                 <h3 className="text-lg md:text-xl font-semibold mb-3">
