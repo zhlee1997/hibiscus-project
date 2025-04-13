@@ -219,8 +219,8 @@ function App() {
               className="rounded-2xl"
             >
               {[
-                "/resources/pic1.jpeg",
                 "/resources/pic2.jpeg",
+                "/resources/pic1.jpeg",
                 "/resources/pic3.jpeg",
                 "/resources/pic4.jpeg",
               ].map((url, index) => (
@@ -228,7 +228,7 @@ function App() {
                   <img
                     src={url}
                     alt={`Slide ${index + 1}`}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
                 </div>
