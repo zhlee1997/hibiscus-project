@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   Globe2,
   Users,
@@ -9,8 +9,21 @@ import {
   ChevronDown,
   Menu,
   X,
-  Instagram,
+  Link,
+  SchoolIcon,
+  SpeakerIcon,
+  WorkflowIcon,
 } from "lucide-react";
+import { TypeAnimation } from "react-type-animation";
+
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
+
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from "react-responsive-carousel";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +35,33 @@ function App() {
     }
     setIsMenuOpen(false);
   };
+
+  const services = [
+    {
+      title: "Consultation & Customization",
+      description:
+        "Understanding client needs and tailoring educational solutions",
+    },
+    {
+      title: "In-Person Training",
+      description:
+        "20 classroom sessions to help students master a complete language system",
+    },
+    {
+      title: "Online Dialogue Practice",
+      description: "Regular online review sessions to reinforce course content",
+    },
+    {
+      title: "Cultural Activities",
+      description:
+        "On-site cultural experiences to deepen understanding through classic case studies",
+    },
+    {
+      title: "Member Networking",
+      description:
+        "Building friendship circles among businesspeople and professionals",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
@@ -39,6 +79,12 @@ function App() {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button
+              onClick={() => scrollToSection("target")}
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+            >
+              Targets
+            </button>
+            <button
               onClick={() => scrollToSection("services")}
               className="text-gray-600 hover:text-pink-600 transition-colors"
             >
@@ -48,7 +94,7 @@ function App() {
               onClick={() => scrollToSection("experiences")}
               className="text-gray-600 hover:text-pink-600 transition-colors"
             >
-              Experience
+              Training
             </button>
             <button
               onClick={() => scrollToSection("contact")}
@@ -57,12 +103,12 @@ function App() {
               Contact
             </button>
             <a
-              href="https://instagram.com"
+              href="https://www.xiaohongshu.com/user/profile/63ed8cf00000000026013ac9?xsec_token=ABWWhirHZgIVMwnASFCxxt_E0UwHVz_tQIHr7gDB_BeJA%3D&xsec_source=pc_search"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-pink-600 transition-colors"
             >
-              <Instagram className="w-5 h-5" />
+              <Link className="w-5 h-5" />
             </a>
           </div>
 
@@ -84,6 +130,12 @@ function App() {
           <div className="md:hidden absolute top-full left-0 right-0 bg-white border-t border-gray-100 shadow-lg py-4">
             <div className="flex flex-col items-center gap-4">
               <button
+                onClick={() => scrollToSection("target")}
+                className="text-gray-600 hover:text-pink-600 transition-colors w-full px-6 py-2"
+              >
+                Target
+              </button>
+              <button
                 onClick={() => scrollToSection("services")}
                 className="text-gray-600 hover:text-pink-600 transition-colors w-full px-6 py-2"
               >
@@ -93,7 +145,7 @@ function App() {
                 onClick={() => scrollToSection("experiences")}
                 className="text-gray-600 hover:text-pink-600 transition-colors w-full px-6 py-2"
               >
-                Experience
+                Training
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -121,13 +173,26 @@ function App() {
               </h1>
             </div>
             <p className="text-xl md:text-2xl text-gray-600 mb-6 md:mb-8">
-              Discover Malaysian Culture Through Language
+              Professional Malay dialogue and cultural training
             </p>
             <div className="flex items-center gap-4 mb-6 md:mb-8">
               <Globe2 className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
-              <p className="text-base md:text-lg text-gray-700">
+              {/* <p className="text-base md:text-lg text-gray-700">
                 Bridging Cultures Through Language Education
-              </p>
+              </p> */}
+              <TypeAnimation
+                sequence={[
+                  // Same substring at the start will only be typed out once, initially
+                  "We offer systematic training",
+                  1500, // wait 1s before replacing "Mice" with "Hamsters"
+                  "We offer cultural exchanges",
+                  1500,
+                ]}
+                wrapper="span"
+                speed={50}
+                style={{ fontSize: "1.5rem", color: "#4a5568" }}
+                repeat={Infinity}
+              />
             </div>
             <button
               onClick={() => scrollToSection("contact")}
@@ -138,13 +203,35 @@ function App() {
           </div>
 
           {/* Right side - Image */}
-          <div className="relative h-[300px] md:h-[500px] rounded-2xl overflow-hidden shadow-2xl order-1 md:order-2">
-            <img
-              src="https://images.squarespace-cdn.com/content/v1/5919f7bfd2b857811c061c2f/1552499905347-O03AQH2ZJH83FZO1YNVT/petronas-twin-towers-malaysia.jpg?format=1000w"
-              alt="Petronas Twin Towers"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+          <div className="order-1 md:order-2 rounded-2xl overflow-hidden shadow-2xl">
+            <Carousel
+              autoPlay
+              infiniteLoop
+              showThumbs={false}
+              showStatus={false}
+              interval={3000}
+              transitionTime={800}
+              showArrows={false}
+              swipeable
+              emulateTouch
+              className="rounded-2xl"
+            >
+              {[
+                "public/resources/pic1.jpeg",
+                "public/resources/pic2.jpeg",
+                "public/resources/pic3.jpeg",
+                "public/resources/pic4.jpeg",
+              ].map((url, index) => (
+                <div key={index} className="relative h-[300px] md:h-[500px]">
+                  <img
+                    src={url}
+                    alt={`Slide ${index + 1}`}
+                    className="w-full h-full object-contain"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+                </div>
+              ))}
+            </Carousel>
           </div>
         </div>
 
@@ -157,34 +244,101 @@ function App() {
         </div>
       </header>
 
+      {/* Target Groups Section */}
+      <section id="target" className="py-16 md:py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
+            Our Targets
+          </h2>
+          <div className="text-center mb-8">
+            <p className="text-xl md:text-2xl text-gray-600">
+              Through short-term systematic learning, build your own language
+              thinking ability
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 rounded-xl bg-pink-50 border-2 border-transparent hover:border-pink-300 transition duration-300">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
+                Academic Students
+              </h3>
+              <div className="mb-4 rounded-lg overflow-hidden">
+                <img
+                  src="https://www.graduateprogram.org/wp-content/uploads/2021/04/Apr-19-How-to-Tackle-Academic-Language-with-Your-Students_web-1024x682.jpg"
+                  alt="Academic Students"
+                  className="w-full h-64 object-cover object-top"
+                />
+              </div>
+              <ul className="text-gray-600">
+                <li className="text-lg text-center">Undergraduate Students</li>
+                <li className="text-lg text-center">
+                  Postgraduates Students (Master & PhD)
+                </li>
+                <li className="text-sm mt-6">* UM, UKM, Taylor's, Sunway</li>
+              </ul>
+            </div>
+            <div className="p-6 rounded-xl bg-pink-50 border-2 border-transparent hover:border-pink-300 transition duration-300">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">
+                Professionals
+              </h3>
+              <div className="mb-4 rounded-lg overflow-hidden">
+                <img
+                  src="https://www.thehrdigest.com/wp-content/uploads/2020/04/Top-Careers-HR-Professionals.jpg"
+                  alt="Professionals"
+                  className="w-full h-64 object-cover object-top"
+                />
+              </div>
+              <ul className="text-gray-600">
+                <li className="text-lg text-center">Expatriates</li>
+                <li className="text-lg text-center">
+                  Corporate Professionals (GLC & Private Company)
+                </li>
+                <li className="text-sm mt-6">
+                  * Infrastructure, Technology, Green Energy
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services Section */}
       <section id="services" className="py-16 md:py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
             Our Services
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="text-center mb-8">
+            <p className="text-xl md:text-2xl text-gray-600">
+              Help you unlock smooth communication other than your mother tongue
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
               <Languages className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
               <h3 className="text-lg md:text-xl font-semibold mb-3">
-                Language Classes
+                Malay conversation training
               </h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Interactive Malay language lessons tailored for beginners to
-                advanced learners.
+                Through systematic training, you can master Malay conversation
+                in a short time. The complete learning content covers
+                pronunciation, grammar and usage courses to help students
+                smoothly switch from their native language to daily
+                conversations in other languages.
               </p>
             </div>
             <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
               <Users className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
               <h3 className="text-lg md:text-xl font-semibold mb-3">
-                Cultural Immersion
+                Cultural exchange activities
               </h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Experience Malaysian traditions, customs, and daily life through
-                engaging activities.
+                Guide foreigners to understand local culture and background
+                through activities and visits, and better integrate into local
+                society. Let members from different countries know each other,
+                establish a circle of friendship, and benefit each other.
               </p>
             </div>
-            <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
+            {/* <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
               <Heart className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
               <h3 className="text-lg md:text-xl font-semibold mb-3">
                 Community Events
@@ -193,7 +347,7 @@ function App() {
                 Join our vibrant community events and practice Malay in a fun,
                 supportive environment.
               </p>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -202,42 +356,86 @@ function App() {
       <section id="experiences" className="py-16 md:py-20 px-4 bg-pink-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
-            Learning Experiences
+            Training Plan & Process
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <img
-                src="resources/photo_1.jpg"
-                alt="Language Learning"
-                className="w-full h-48 md:h-64 object-contain"
-              />
-              <div className="p-6 bg-white">
-                <h3 className="text-lg md:text-xl font-semibold mb-3">
-                  Traditional Vocal Class
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Engaging language practice through group activities and
-                  cultural exchange.
-                </p>
+
+          {/* Top 3 Boxes in a Row */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            {services.slice(0, 3).map((item, index) => (
+              <div
+                key={index}
+                className="border border-gray-300 rounded-2xl p-6 shadow-sm text-center bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-pink-300"
+              >
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-lg">{item.description}</p>
               </div>
-            </div>
-            <div className="rounded-xl overflow-hidden shadow-lg">
-              <img
-                src="resources/photo_2.jpg"
-                alt="Language Learning"
-                className="w-full h-48 md:h-64 object-contain"
-              />
-              <div className="p-6 bg-white">
-                <h3 className="text-lg md:text-xl font-semibold mb-3">
-                  Interactive Sessions
-                </h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  Engaging language practice through group activities and
-                  cultural exchange.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
+
+          {/* Bottom 2 Boxes in Two Columns */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.slice(3).map((item, index) => (
+              <div
+                key={index + 3}
+                className="border border-gray-300 rounded-2xl p-6 shadow-sm text-center bg-white transition-all duration-300 hover:shadow-md hover:-translate-y-1 hover:border-pink-300"
+              >
+                <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
+                <p className="text-gray-600 text-lg">{item.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-16 mb-2">
+            <p className="text-lg md:text-2xl text-gray-600">
+              How does the Training Process work?
+            </p>
+          </div>
+
+          <VerticalTimeline>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="First Step"
+              iconStyle={{ background: "rgb(255,105,180)", color: "#fff" }}
+              icon={<SpeakerIcon />}
+            >
+              <h3 className="vertical-timeline-element-title">Pronunciation</h3>
+              <p>
+                Scan students' pronunciation gaps through layered analysis,
+                provide targeted training and corrections, and master the
+                accurate pronunciation of the language in a short period of
+                time.
+              </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="Second Step"
+              iconStyle={{ background: "rgb(255,105,180)", color: "#fff" }}
+              icon={<SchoolIcon />}
+            >
+              <h3 className="vertical-timeline-element-title">Grammar</h3>
+              <p>
+                Architectural and functional anatomy and grammatical structure,
+                concisely grasp the operational logic and core content of Malay
+                language.
+              </p>
+            </VerticalTimelineElement>
+            <VerticalTimelineElement
+              className="vertical-timeline-element--work"
+              date="Third Step"
+              iconStyle={{ background: "rgb(255,105,180)", color: "#fff" }}
+              icon={<WorkflowIcon />}
+            >
+              <h3 className="vertical-timeline-element-title">
+                Implementation
+              </h3>
+              <p>
+                Through the three-stage conversion of mother tongue to foreign
+                language implementation, students' language patterns are
+                analyzed so that he/she can smoothly use foreign languages in
+                daily life.
+              </p>
+            </VerticalTimelineElement>
+          </VerticalTimeline>
         </div>
       </section>
 
@@ -253,7 +451,7 @@ function App() {
               <div>
                 <h3 className="font-semibold">Email</h3>
                 <p className="text-gray-600 text-sm md:text-base">
-                  contact@hibiscus-edu.my
+                  keanlapphang@gmail.com
                 </p>
               </div>
             </div>
