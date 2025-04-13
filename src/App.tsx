@@ -13,6 +13,8 @@ import {
   SchoolIcon,
   SpeakerIcon,
   WorkflowIcon,
+  MessageCircleIcon,
+  MessageSquareCodeIcon,
 } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 
@@ -441,12 +443,16 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-20 px-4 bg-white">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
             Contact Us
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-            <div className="flex items-center gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+            {/* Email */}
+            <a
+              href="mailto:keanlapphang@gmail.com"
+              className="flex items-center gap-4 cursor-pointer"
+            >
               <Mail className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
               <div>
                 <h3 className="font-semibold">Email</h3>
@@ -454,13 +460,52 @@ function App() {
                   keanlapphang@gmail.com
                 </p>
               </div>
-            </div>
-            <div className="flex items-center gap-4">
+            </a>
+
+            {/* Phone */}
+            <a
+              href="tel:+60176972914"
+              className="flex items-center gap-4 cursor-pointer"
+            >
               <Phone className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
               <div>
-                <h3 className="font-semibold">Phone</h3>
+                <h3 className="font-semibold">WhatsApp / Phone</h3>
                 <p className="text-gray-600 text-sm md:text-base">
                   +60 17-697 2914 (Phang)
+                </p>
+              </div>
+            </a>
+
+            {/* WeChat */}
+            <div
+              onClick={() => {
+                navigator.clipboard.writeText("keanlapphang");
+                window.alert("Copied to clipboard");
+              }}
+              className="flex items-center gap-4 cursor-pointer"
+            >
+              <MessageCircleIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+              <div>
+                <h3 className="font-semibold">WeChat</h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  keanlapphang
+                </p>
+              </div>
+            </div>
+
+            {/* RedNote */}
+            <div
+              onClick={() => {
+                navigator.clipboard.writeText("马来亚男孩 (HIBISCUS)");
+                window.alert("Copied to clipboard");
+              }}
+              className="flex items-center gap-4 cursor-pointer"
+            >
+              <MessageSquareCodeIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+              <div>
+                <h3 className="font-semibold">RedNote</h3>
+                <p className="text-gray-600 text-sm md:text-base">
+                  马来亚男孩 (HIBISCUS)
                 </p>
               </div>
             </div>
