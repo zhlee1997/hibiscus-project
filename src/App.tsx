@@ -217,10 +217,10 @@ function App() {
               className="rounded-2xl"
             >
               {[
-                "public/resources/pic1.jpeg",
-                "public/resources/pic2.jpeg",
-                "public/resources/pic3.jpeg",
-                "public/resources/pic4.jpeg",
+                "/resources/pic1.jpeg",
+                "/resources/pic2.jpeg",
+                "/resources/pic3.jpeg",
+                "/resources/pic4.jpeg",
               ].map((url, index) => (
                 <div key={index} className="relative h-[300px] md:h-[500px]">
                   <img
