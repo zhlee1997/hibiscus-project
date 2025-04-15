@@ -443,70 +443,203 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-16 md:py-20 px-4 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
-            Contact Us
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
-            {/* Email */}
-            <a
-              href="mailto:keanlapphang@gmail.com"
-              className="flex items-center gap-4 cursor-pointer"
-            >
-              <Mail className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
+          Contact Us
+        </h2>
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+          {/* Contact Form */}
+          <div className="bg-white p-6 rounded-lg">
+            <h2 className="text-3xl font-bold mb-4">Want to speak to us?</h2>
+            <p className="text-gray-600 mb-8">
+              Talk to our customer support for other general product inquiries.
+              We'd love to hear from you!
+            </p>
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>
-                <h3 className="font-semibold">Email</h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  keanlapphang@gmail.com
-                </p>
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Email<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  required
+                />
               </div>
-            </a>
 
-            {/* Phone */}
-            <a
-              href="tel:+60176972914"
-              className="flex items-center gap-4 cursor-pointer"
-            >
-              <Phone className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
               <div>
-                <h3 className="font-semibold">WhatsApp / Phone</h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  +60 17-697 2914 (Phang)
-                </p>
+                <label
+                  htmlFor="fullName"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Full Name<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="fullName"
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  required
+                />
               </div>
-            </a>
 
-            {/* WeChat */}
-            <div
-              onClick={() => {
-                navigator.clipboard.writeText("keanlapphang");
-                window.alert("Copied to clipboard");
-              }}
-              className="flex items-center gap-4 cursor-pointer"
-            >
-              <MessageCircleIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
               <div>
-                <h3 className="font-semibold">WeChat</h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  keanlapphang
-                </p>
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Phone number<span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-2">
+                  <select className="px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                    <option value="malaysia">Malaysia</option>
+                  </select>
+                  <input
+                    type="tel"
+                    id="phone"
+                    placeholder="+60"
+                    className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                    required
+                  />
+                </div>
               </div>
+
+              <div>
+                <label
+                  htmlFor="enquiry"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Enquiry product<span className="text-red-500">*</span>
+                </label>
+                <div className="flex gap-2 w-full">
+                  <select className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white">
+                    <option value="malay">Malay Conversation Training</option>
+                    <option value="culture">
+                      Cultural Exchange Activities
+                    </option>
+                    <option value="company">Company Training</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Subject<span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  placeholder="General enquiry, technical support, etc."
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium text-gray-700 mb-1"
+                >
+                  Message<span className="text-red-500">*</span>
+                </label>
+                <textarea
+                  id="message"
+                  rows={4}
+                  placeholder="Please describe your inquiry or the issues you're facing."
+                  className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="bg-emerald-500 text-white px-8 py-2 rounded-full hover:bg-emerald-600 transition-colors"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+
+          {/* Company Information */}
+          <div className="bg-white p-6 rounded-lg">
+            <div className="mb-8">
+              <div className="flex items-center gap-3 mb-6">
+                <h1 className="text-xl md:text-3xl text-gray-800">
+                  HIBISCUS CULTURAL NETWORK
+                </h1>
+              </div>
+              <p className="text-gray-600 mb-2">202503097229 (003717708-X)</p>
+              <p className="text-gray-600">
+                Block C, Level 3, Institute For Advanced Studies, Universiti
+                Malaya, 59200 Kuala Lumpur, Wilayah Persekutuan.
+              </p>
             </div>
 
-            {/* RedNote */}
-            <div
-              onClick={() => {
-                navigator.clipboard.writeText("马来亚男孩 (HIBISCUS)");
-                window.alert("Copied to clipboard");
-              }}
-              className="flex items-center gap-4 cursor-pointer"
-            >
-              <MessageSquareCodeIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
-              <div>
-                <h3 className="font-semibold">RedNote</h3>
-                <p className="text-gray-600 text-sm md:text-base">
-                  马来亚男孩 (HIBISCUS)
-                </p>
+            <div className="space-y-6">
+              <a
+                href="mailto:hibiscuscultural@gmail.com"
+                className="flex items-center gap-4 cursor-pointer"
+              >
+                <Mail className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+                <div>
+                  <h3 className="font-semibold">Email</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    hibiscuscultural@gmail.com
+                  </p>
+                </div>
+              </a>
+
+              {/* Phone */}
+              <a
+                href="tel:+60176972914"
+                className="flex items-center gap-4 cursor-pointer"
+              >
+                <Phone className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+                <div>
+                  <h3 className="font-semibold">WhatsApp / Phone</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    +60 17-697 2914 (Phang)
+                  </p>
+                </div>
+              </a>
+
+              {/* WeChat */}
+              <div
+                onClick={() => {
+                  navigator.clipboard.writeText("keanlapphang");
+                  window.alert("Copied to clipboard");
+                }}
+                className="flex items-center gap-4 cursor-pointer"
+              >
+                <MessageCircleIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+                <div>
+                  <h3 className="font-semibold">WeChat</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    keanlapphang
+                  </p>
+                </div>
+              </div>
+
+              {/* RedNote */}
+              <div
+                onClick={() => {
+                  navigator.clipboard.writeText("马来亚男孩 (HIBISCUS)");
+                  window.alert("Copied to clipboard");
+                }}
+                className="flex items-center gap-4 cursor-pointer"
+              >
+                <MessageSquareCodeIcon className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+                <div>
+                  <h3 className="font-semibold">RedNote</h3>
+                  <p className="text-gray-600 text-sm md:text-base">
+                    马来亚男孩 (HIBISCUS)
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -521,7 +654,8 @@ function App() {
             <h3 className="text-xl md:text-2xl font-bold">Hibiscus</h3>
           </div>
           <p className="text-gray-400 text-sm md:text-base">
-            © 2025 Hibiscus Language Education. All rights reserved.
+            Copyright © 2025 HIBISCUS CULTURAL NETWORK. 202503097229
+            (003717708-X). All rights reserved.
           </p>
         </div>
       </footer>
