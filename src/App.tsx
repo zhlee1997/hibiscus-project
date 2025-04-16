@@ -15,6 +15,7 @@ import {
   WorkflowIcon,
   MessageCircleIcon,
   MessageSquareCodeIcon,
+  Briefcase,
 } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
 
@@ -99,6 +100,12 @@ function App() {
               Training
             </button>
             <button
+              onClick={() => scrollToSection("about")}
+              className="text-gray-600 hover:text-pink-600 transition-colors"
+            >
+              About
+            </button>
+            <button
               onClick={() => scrollToSection("contact")}
               className="text-gray-600 hover:text-pink-600 transition-colors"
             >
@@ -148,6 +155,12 @@ function App() {
                 className="text-gray-600 hover:text-pink-600 transition-colors w-full px-6 py-2"
               >
                 Training
+              </button>
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-gray-600 hover:text-pink-600 transition-colors w-full px-6 py-2"
+              >
+                About
               </button>
               <button
                 onClick={() => scrollToSection("contact")}
@@ -314,7 +327,7 @@ function App() {
               Help you unlock smooth communication other than your mother tongue
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
               <Languages className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
               <h3 className="text-lg md:text-xl font-semibold mb-3">
@@ -340,16 +353,19 @@ function App() {
                 establish a circle of friendship, and benefit each other.
               </p>
             </div>
-            {/* <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
-              <Heart className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
+            <div className="p-6 rounded-xl bg-pink-50 hover:bg-pink-100 transition-colors">
+              <Briefcase className="w-10 md:w-12 h-10 md:h-12 text-pink-600 mb-4" />
               <h3 className="text-lg md:text-xl font-semibold mb-3">
-                Community Events
+                Company training
               </h3>
               <p className="text-gray-600 text-sm md:text-base">
-                Join our vibrant community events and practice Malay in a fun,
-                supportive environment.
+                Empower your workforce through customized Malay conversation
+                training designed for corporate environments. Our program equips
+                employees with the language skills needed to enhance
+                communication, improve collaboration, and boost workplace
+                productivity.
               </p>
-            </div> */}
+            </div>
           </div>
         </div>
       </section>
@@ -423,7 +439,7 @@ function App() {
             </VerticalTimelineElement>
             <VerticalTimelineElement
               className="vertical-timeline-element--work"
-              date="Third Step"
+              date="Final Step"
               iconStyle={{ background: "rgb(255,105,180)", color: "#fff" }}
               icon={<WorkflowIcon />}
             >
@@ -438,6 +454,88 @@ function App() {
               </p>
             </VerticalTimelineElement>
           </VerticalTimeline>
+        </div>
+      </section>
+
+      {/* About Us Section */}
+      <section id="about" className="py-16 md:py-20 px-4 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-16 text-gray-800">
+            About Us
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            {/* Left side - Text Content */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-semibold text-pink-600">
+                A Story of Our Origin
+              </h3>
+              <p className="text-gray-600">
+                Our story began in 2014, when the founder was still an
+                undergraduate student at the University of Malaya. While serving
+                as a student buddy in the Faculty of Arts and Social Sciences,
+                He had his first meaningful cultural exchange with international
+                students—starting with peers from South Korea. This experience
+                sparked a deep interest in cross-cultural communication and
+                connection.
+              </p>
+              <p className="text-gray-600">
+                In the following years, more students from Japan, Thailand,
+                China, and the Middle East came to the University of Malaya for
+                exchange programmes and summer camps. These interactions further
+                strengthened the founder's passion for intercultural
+                understanding and dialogue.
+              </p>
+              <p className="text-gray-600">
+                Today, after years of engaging with international students, we
+                have officially established a language and cultural facilitation
+                team made up of students from various faculties at the
+                university. Among all our learners, Chinese postgraduate
+                students have consistently formed our largest and most active
+                participant group. In recent years, our work has also extended
+                to include corporate professionals and expatriates based in
+                Malaysia.
+              </p>
+              <p className="text-gray-600">
+                We believe that through language learning and cultural sharing,
+                individuals from different countries can build lasting
+                friendships, integrate more meaningfully into local communities,
+                and broaden their worldviews. This journey fosters a deeper
+                sense of empathy, openness, and cross-cultural appreciation.
+              </p>
+            </div>
+
+            {/* Right side - Image Grid */}
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                  src="/resources/about_2.jpeg"
+                  alt="Cultural Exchange 1"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                  src="/resources/about_1.jpeg"
+                  alt="Cultural Exchange 2"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                  src="/resources/about_4.jpeg"
+                  alt="Cultural Exchange 3"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="aspect-square overflow-hidden rounded-lg">
+                <img
+                  src="/resources/about_3.jpeg"
+                  alt="Cultural Exchange 4"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
