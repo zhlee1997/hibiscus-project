@@ -112,7 +112,7 @@ function App() {
               Contact
             </button>
             <a
-              href="https://www.xiaohongshu.com/user/profile/63ed8cf00000000026013ac9?xsec_token=ABWWhirHZgIVMwnASFCxxt_E0UwHVz_tQIHr7gDB_BeJA%3D&xsec_source=pc_search"
+              href="https://linktr.ee/hibiscus.my"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-pink-600 transition-colors"
