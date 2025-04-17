@@ -27,9 +27,15 @@ import "react-vertical-timeline-component/style.min.css";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from "react-responsive-carousel";
+import { submitContactForm } from "./services/api";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: "success" | "error" | null;
+    message: string;
+  }>({ type: null, message: "" });
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -65,6 +71,47 @@ function App() {
         "Building friendship circles among businesspeople and professionals",
     },
   ];
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // setIsSubmitting(true);
+    // setSubmitStatus({ type: null, message: "" });
+
+    const formData = {
+      email: (e.currentTarget.elements.namedItem("email") as HTMLInputElement)
+        .value,
+      fullName: (
+        e.currentTarget.elements.namedItem("fullName") as HTMLInputElement
+      ).value,
+      phoneNo: (e.currentTarget.elements.namedItem("phone") as HTMLInputElement)
+        .value,
+      enquiryProduct: (
+        e.currentTarget.elements.namedItem("enquiry") as HTMLSelectElement
+      ).value,
+      subject: (
+        e.currentTarget.elements.namedItem("subject") as HTMLInputElement
+      ).value,
+      message: (
+        e.currentTarget.elements.namedItem("message") as HTMLTextAreaElement
+      ).value,
+    };
+
+    try {
+      await submitContactForm(formData);
+      setSubmitStatus({
+        type: "success",
+        message: "Form submitted successfully!",
+      });
+      e.currentTarget.reset();
+    } catch (error) {
+      setSubmitStatus({
+        type: "error",
+        message: "Failed to submit form. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
@@ -552,7 +599,7 @@ function App() {
               Talk to our customer support for other general product inquiries.
               We'd love to hear from you!
             </p>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label
                   htmlFor="email"
@@ -563,6 +610,7 @@ function App() {
                 <input
                   type="email"
                   id="email"
+                  name="email"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   required
                 />
@@ -578,6 +626,7 @@ function App() {
                 <input
                   type="text"
                   id="fullName"
+                  name="fullName"
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   required
                 />
@@ -597,6 +646,7 @@ function App() {
                   <input
                     type="tel"
                     id="phone"
+                    name="phone"
                     placeholder="+60"
                     className="flex-1 px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                     required
@@ -612,7 +662,11 @@ function App() {
                   Enquiry product<span className="text-red-500">*</span>
                 </label>
                 <div className="flex gap-2 w-full">
-                  <select className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white">
+                  <select
+                    id="enquiry"
+                    name="enquiry"
+                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent bg-white"
+                  >
                     <option value="malay">Malay Conversation Training</option>
                     <option value="culture">
                       Cultural Exchange Activities
@@ -632,6 +686,7 @@ function App() {
                 <input
                   type="text"
                   id="subject"
+                  name="subject"
                   placeholder="General enquiry, technical support, etc."
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
                   required
@@ -647,6 +702,7 @@ function App() {
                 </label>
                 <textarea
                   id="message"
+                  name="message"
                   rows={4}
                   placeholder="Please describe your inquiry or the issues you're facing."
                   className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-pink-500 focus:border-transparent"
@@ -654,12 +710,26 @@ function App() {
                 />
               </div>
 
-              <button
-                type="submit"
-                className="bg-emerald-500 text-white px-8 py-2 rounded-full hover:bg-emerald-600 transition-colors"
-              >
-                Submit
-              </button>
+              <div className="space-y-4">
+                <button
+                  type="submit"
+                  className="bg-emerald-500 text-white px-8 py-2 rounded-full hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
+                </button>
+                {submitStatus.type && (
+                  <p
+                    className={`text-sm ${
+                      submitStatus.type === "success"
+                        ? "text-green-600"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </p>
+                )}
+              </div>
             </form>
           </div>
 
