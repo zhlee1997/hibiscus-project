@@ -72,10 +72,26 @@ function App() {
     },
   ];
 
+  const handleSelectEnquiryProduct = (selectValue: string): string => {
+    switch (selectValue) {
+      case "malay":
+        return "Malay Conversation Training";
+
+      case "culture":
+        return "Cultural Exchange Activities";
+
+      case "company":
+        return "Company Training";
+
+      default:
+        return "";
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // setIsSubmitting(true);
-    // setSubmitStatus({ type: null, message: "" });
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: "" });
 
     const formData = {
       email: (e.currentTarget.elements.namedItem("email") as HTMLInputElement)
@@ -85,9 +101,10 @@ function App() {
       ).value,
       phoneNo: (e.currentTarget.elements.namedItem("phone") as HTMLInputElement)
         .value,
-      enquiryProduct: (
-        e.currentTarget.elements.namedItem("enquiry") as HTMLSelectElement
-      ).value,
+      enquiryProduct: handleSelectEnquiryProduct(
+        (e.currentTarget.elements.namedItem("enquiry") as HTMLSelectElement)
+          .value
+      ),
       subject: (
         e.currentTarget.elements.namedItem("subject") as HTMLInputElement
       ).value,
@@ -102,11 +119,11 @@ function App() {
         type: "success",
         message: "Form submitted successfully!",
       });
-      e.currentTarget.reset();
+      // e.currentTarget.reset();
     } catch (error) {
       setSubmitStatus({
         type: "error",
-        message: "Failed to submit form. Please try again.",
+        message: "Failed to submit form. Please try again." + error,
       });
     } finally {
       setIsSubmitting(false);
@@ -714,9 +731,13 @@ function App() {
                 <button
                   type="submit"
                   className="bg-emerald-500 text-white px-8 py-2 rounded-full hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || submitStatus.type == "success"}
                 >
-                  {isSubmitting ? "Submitting..." : "Submit"}
+                  {isSubmitting
+                    ? "Submitting..."
+                    : submitStatus.type == "success"
+                    ? "Submitted"
+                    : "Submit"}
                 </button>
                 {submitStatus.type && (
                   <p
