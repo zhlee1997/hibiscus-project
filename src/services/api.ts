@@ -10,7 +10,8 @@ interface FormData {
 export const submitContactForm = async (formData: FormData) => {
   try {
     const response = await fetch(
-      "https://60rgzr31e1.execute-api.ap-southeast-1.amazonaws.com/dev/{proxy+}",
+      "https://8hselvlm5f.execute-api.ap-southeast-1.amazonaws.com/prod/{proxy+}",
+      // "https://lnbvm0x9fh.execute-api.ap-southeast-1.amazonaws.com/dev/{proxy+}",
       {
         method: "POST",
         headers: {
