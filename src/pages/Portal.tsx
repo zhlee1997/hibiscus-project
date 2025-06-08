@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Heart,
   FileText,
@@ -9,7 +9,7 @@ import {
   ListChecksIcon,
   BriefcaseIcon,
 } from "lucide-react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useAuthenticatedApi } from "../hooks/useAuthenticatedApi";
 import { SubscriptionResponse } from "../types/subscription";
@@ -72,10 +72,28 @@ function Portal() {
   const isHistoryPage = location.pathname === "/portal/history";
   const isContactPage = location.pathname === "/portal/contact";
 
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const { apiCall } = useAuthenticatedApi();
 
   const [subscription, setSubscription] = useState<SubscriptionUI>();
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+
+  // Close dropdown if clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const fetchTransactions = async () => {
@@ -146,6 +164,11 @@ function Portal() {
       .replace(/ /g, "-");
 
     return formatted;
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
   };
 
   return (
@@ -238,10 +261,23 @@ function Portal() {
               AS AT {convertCurrentTime()}
             </span>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700">
+          <div className="relative flex items-center gap-4" ref={dropdownRef}>
+            <div
+              onClick={() => setIsOpen(!isOpen)}
+              className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-700 hover:cursor-pointer"
+            >
               {user?.fullName?.charAt(0)}
             </div>
+            {isOpen && (
+              <div className="absolute right-0 mt-20 w-32 bg-white border border-gray-200 rounded shadow-lg z-10">
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
           </div>
         </header>
         {/* Dashboard Content */}
