@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 // Import pages
 import AppContent from "./components/AppContent";
@@ -29,6 +34,9 @@ function AppRouter() {
             <Route path="contact" element={<Contact />} />
           </Route>
           <Route path="/" element={<AppContent />} />
+
+          {/* Catch-all route for unrecognized paths */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
     </AuthProvider>
