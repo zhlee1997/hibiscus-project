@@ -107,16 +107,17 @@ function History() {
     // Get the UTC year and month
     const year = transactionDate.getUTCFullYear();
     const month = transactionDate.getUTCMonth(); // 0 = Jan, so 5 = June
+    const date = transactionDate.getUTCDate();
 
-    const startDate = new Date(Date.UTC(year, month, 1)); // June 1, 00:00 UTC
-    const endDate = new Date(Date.UTC(year, month + 1, 1)); // July 1, 00:00 UTC
+    const startDate = new Date(Date.UTC(year, month, date)); // June 1, 00:00 UTC
+    const endDate = new Date(Date.UTC(year, month, date + 1)); // July 1, 00:00 UTC
 
-    console.log("startDate:", startDate.toISOString()); // 2025-06-01T00:00:00.000Z
-    console.log("endDate:", endDate.toISOString()); // 2025-07-01T00:00:00.000Z
+    // console.log("startDate:", startDate.toISOString()); // 2025-06-01T00:00:00.000Z
+    // console.log("endDate:", endDate.toISOString()); // 2025-07-01T00:00:00.000Z
 
     try {
       const response = await apiCall(
-        `/receipt?startDate=${startDate.toISOString()}&endDate=${endDate.toISOString()}`
+        `/receipt?startDate=${startDate}&endDate=${endDate}`
       );
       const data = await response.json();
       console.log("data", data);

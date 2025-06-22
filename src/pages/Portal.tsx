@@ -324,7 +324,9 @@ function Portal() {
                   <div className="flex flex-col gap-1">
                     <div className="flex justify-between text-sm">
                       <span>Active Courses</span>
-                      <span className="font-bold">1</span>
+                      <span className="font-bold">
+                        {subscription?.status === "canceled" ? 0 : 1}
+                      </span>
                     </div>
                     <div className="flex justify-between text-sm">
                       <span>First Sign Up Date</span>
@@ -344,8 +346,16 @@ function Portal() {
                     </div>
                     <div className="flex justify-between text-sm">
                       <span>Next Payment Date</span>
-                      <span className="font-bold text-green-600">
-                        {subscription?.currentPeriodEnd !== undefined
+                      <span
+                        className={
+                          subscription?.status === "canceled"
+                            ? "font-bold text-red-600"
+                            : "font-bold text-green-600"
+                        }
+                      >
+                        {subscription?.status === "canceled"
+                          ? "CANCELLED"
+                          : subscription?.currentPeriodEnd !== undefined
                           ? convertTimestamp(subscription.currentPeriodEnd)
                           : ""}
                       </span>
