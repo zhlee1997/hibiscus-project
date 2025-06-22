@@ -3,8 +3,9 @@ import { LoginRequest, LoginResponse } from "../types/auth";
 class AuthService {
   // private baseURL = "http://localhost:3000/api";
   // private baseURL = "http://ec2-44-211-220-155.compute-1.amazonaws.com/api";
-  private baseURL =
-    "https://hibiscus-backend-lb-1934691410.us-east-1.elb.amazonaws.com/api";
+  // private baseURL =
+  //   "https://hibiscus-backend-lb-1934691410.us-east-1.elb.amazonaws.com/api";
+  private baseURL = "https://api.hibiscuscn.my/api";
 
   async login(credentials: LoginRequest): Promise<LoginResponse> {
     try {
