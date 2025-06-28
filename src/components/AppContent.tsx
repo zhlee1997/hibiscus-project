@@ -865,16 +865,34 @@ function AppContent() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-6 md:py-8 px-4">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Heart className="w-5 md:w-6 h-5 md:h-6 text-pink-400" />
-            <h3 className="text-xl md:text-2xl font-bold">Hibiscus</h3>
+      <footer className="bg-white border-t border-gray-200 py-4 px-4">
+        <div className="max-w-6xl mx-auto my-4 flex flex-col items-center text-gray-600 text-sm gap-1">
+          {/* First Row: Policy Links */}
+          <div className="flex items-center justify-center gap-2 mb-1">
+            <Link to="/return-policy" className="hover:underline">
+              Return Policy
+            </Link>
+            <span className="mx-1">|</span>
+            <Link to="/" className="hover:underline">
+              Terms of Service
+            </Link>
+            <span className="mx-1">|</span>
+            <Link to="/" className="hover:underline">
+              Privacy Policy
+            </Link>
           </div>
-          <p className="text-gray-400 text-sm md:text-base">
-            Copyright © 2025 HIBISCUS CULTURAL NETWORK. 202503097229
-            (003717708-X). All rights reserved.
-          </p>
+
+          {/* Second Row: Copyright and Logo */}
+          <div className="flex flex-col items-center justify-center gap-1">
+            <div className="text-center">
+              Copyright © 2025 HIBISCUS CULTURAL NETWORK. 202503097229
+              (003717708-X). All Rights Reserved.
+            </div>
+            {/* <div className="flex items-center justify-center gap-2 mt-1">
+              <Heart className="w-5 md:w-6 h-5 md:h-6 text-pink-600" />
+              <span className="font-bold text-gray-800">Hibiscus</span>
+            </div> */}
+          </div>
         </div>
       </footer>
     </>
